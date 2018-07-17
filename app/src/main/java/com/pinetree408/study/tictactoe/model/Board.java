@@ -11,7 +11,7 @@ public class Board {
     private GameState gameState;
     private Player currentTurnPlayer;
 
-    private enum GameState { IN_PROGRESS, FINISHED };
+    private enum GameState { IN_PROGRESS, FINISHED }
 
     public Board() {
         restart();
@@ -24,17 +24,23 @@ public class Board {
         gameState = GameState.IN_PROGRESS;
     }
 
-    public void mark( int row, int col ) {
+    public Player mark( int row, int col ) {
+
+        Player playerThatMoved = null;
+
         if(isValid(row, col)) {
             cells[row][col].setValue(currentTurnPlayer);
+            playerThatMoved = currentTurnPlayer;
 
             if(isWinningMoveByPlayer(currentTurnPlayer, row, col)) {
                 gameState = GameState.FINISHED;
                 winner = currentTurnPlayer;
             } else {
-                flipCurrentTurnPlayer();
+                flipCurrentTurn();
             }
         }
+
+        return playerThatMoved;
     }
 
     public Player getWinner() {
@@ -69,14 +75,6 @@ public class Board {
         return cells[row][col].getValue() != null;
     }
 
-    /**
-     * Algorithm adapted from http://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe.html
-     * @param player
-     * @param currentRow
-     * @param currentCol
-     * @return true if <code>player</code> who just played the move at the <code>currentRow</code>, <code>currentCol</code>
-     *              has a tic tac toe.
-     */
     private boolean isWinningMoveByPlayer(Player player, int currentRow, int currentCol) {
 
         return (cells[currentRow][0].getValue() == player         // 3-in-the-row
@@ -95,7 +93,7 @@ public class Board {
                 && cells[2][0].getValue() == player);
     }
 
-    private void flipCurrentTurnPlayer() {
+    private void flipCurrentTurn() {
         currentTurnPlayer = currentTurnPlayer == X ? O : X;
     }
 }
