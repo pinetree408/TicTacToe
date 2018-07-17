@@ -1,6 +1,6 @@
-package com.pinetree408.study.tictactoe.presenter;
+package com.pinetree408.study.tictactoe.viewmodel;
 
-public interface Presenter {
+public interface ViewModel {
     void onCreate();
     void onPause();
     void onResume();
