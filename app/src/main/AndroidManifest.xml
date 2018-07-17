@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".controller.TicTacToeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" android:screenOrientation="portrait" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

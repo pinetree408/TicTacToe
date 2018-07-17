@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">TicTacToe</string>
-    <string name="title_activity_tic_tac_toe">TicTacToeActivity</string>
+    <string name="winner">Winner</string>
 </resources>
