@@ -1,18 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tictactoe"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/fab_margin"
-    android:paddingLeft="@dimen/fab_margin"
-    android:paddingRight="@dimen/fab_margin"
-    android:paddingTop="@dimen/fab_margin"
-    tools:context="com.pinetree408.study.tictactoe.controller.TicTacToeActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="com.pinetree408.study.tictactoe.viewmodel.TicTacToeViewModel" />
+    </data>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/tictactoe"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:gravity="center_horizontal"
+        tools:context="com.pinetree408.study.tictactoe.view.TicTacToeActivity"
+        >
+
+        <GridLayout
+            android:id="@+id/buttonGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3"
+            >
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(0,0)}"
+                android:text='@{viewModel.cells["00"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(0,1)}"
+                android:text='@{viewModel.cells["01"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(0,2)}"
+                android:text='@{viewModel.cells["02"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(1,0)}"
+                android:text='@{viewModel.cells["10"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(1,1)}"
+                android:text='@{viewModel.cells["11"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(1,2)}"
+                android:text='@{viewModel.cells["12"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(2,0)}"
+                android:text='@{viewModel.cells["20"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(2,1)}"
+                android:text='@{viewModel.cells["21"]}'
+                style="@style/TictactoeButton"
+                />
+
+            <Button
+                android:onClick="@{() -> viewModel.onClickedCellAt(2,2)}"
+                android:text='@{viewModel.cells["22"]}'
+                style="@style/TictactoeButton"
+                />
+
+        </GridLayout>
+
+        <LinearLayout
+            android:id="@+id/winnerPlayerViewGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.winner != null ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible"
+            >
+
+            <TextView
+                android:id="@+id/winnerPlayerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:layout_margin="20dp"
+                android:text="@{viewModel.winner}"
+                tools:text="X"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="@string/winner"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
